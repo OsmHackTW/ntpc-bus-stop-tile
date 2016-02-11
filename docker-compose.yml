@@ -1,5 +1,9 @@
 tile-server:
   build: ./tile-server
+  ports:
+    - "8888:8080"
+  links:
+    - db
 
 db:
   build: ./db

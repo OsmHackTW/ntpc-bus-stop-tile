@@ -1,0 +1,19 @@
+services:
+  wmts:
+
+layers:
+  - name: bus
+    title: Bus
+    sources: [mnc]
+
+caches:
+  mnc:
+    grids: [GLOBAL_WEBMERCATOR]
+    sources: [mn]
+
+sources:
+  mn:
+    type: mapnik
+    mapfile: /mapnik.xml
+    transparent: true
+

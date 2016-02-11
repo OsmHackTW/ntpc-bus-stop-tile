@@ -4,6 +4,13 @@ RUN echo "deb http://httpredir.debian.org/debian jessie-backports main" >> /etc/
 RUN apt-get update && \
     apt-get install -y libmapnik2.2 mapnik-utils \
     fonts-noto-cjk libgeos-dev libgdal-dev libproj0 \
-    python-pip python-imaging python-yaml python-shapely && \
+    python-pip python-imaging python-yaml python-shapely \
+    nodejs-legacy npm && \
     rm -rf /var/lib/apt/lists/*
 RUN pip install MapProxy==1.8.1
+RUN npm install -g carto
+ADD project.mml /
+ADD mapproxy.yaml /
+ADD style.mss /
+RUN carto /project.mml > /mapnik.xml
+CMD mapproxy-util serve-develop -b 0.0.0.0:8080 /mapproxy.yaml
