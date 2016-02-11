@@ -3,5 +3,3 @@ tile-server:
 
 db:
   build: ./db
-  environment:
-    POSTGRES_PASSWORD: $POSTGRES_PASSWORD
